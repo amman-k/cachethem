@@ -27,7 +27,6 @@ If you outgrow it (multi-instance cache coherence, persistence, huge datasets), 
   - [Advanced Examples](#advanced-examples)
   - [Common Use Cases](#common-use-cases)
   - [Configuration Options](#configuration-options)
-  - [API Overview](#api-overview)
 - [Architecture](#architecture)
 - [Performance Considerations](#performance-considerations)
 - [Security Considerations](#security-considerations)
@@ -35,8 +34,6 @@ If you outgrow it (multi-instance cache coherence, persistence, huge datasets), 
 - [Troubleshooting](#troubleshooting)
 - [Testing](#testing)
 - [Development Setup](#development-setup)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
