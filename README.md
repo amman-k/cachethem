@@ -209,7 +209,7 @@ c := cachethem.New[string, string](cachethem.Config{
 | `EvictionPolicy` | `EvictionPolicy`  | `LRU`          | Strategy used when `MaxItems` is exceeded         |
 | `CleanupInterval`| `time.Duration`   | `1 * time.Minute` | How often the background sweeper removes expired keys |
 | `OnEvict`        | `func(K, EvictReason)` | `nil`     | Callback invoked whenever an item is evicted      |
-| `ShardCount`     | `int`             | `16`           | Number of internal shards for lock contention control |
+| `ShardCount`     | `int`             | `32`           | Number of internal shards for lock contention control |
 
 
 ---
