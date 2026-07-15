@@ -156,8 +156,8 @@ c.Delete("requests:count")
 
 | Option           | Type              | Default        | Description                                      |
 |------------------|-------------------|----------------|--------------------------------------------------|
-| `DefaultTTL`     | `time.Duration`   | `0` (no expiry)| TTL applied to keys set without an explicit TTL   |
-| `MaxItems`       | `int`             | `0` (unbounded)| Maximum number of items before eviction triggers  |
+| `DefaultTTL`     | `time.Duration`   | `5 * time.Minute` | TTL applied to keys set without an explicit TTL   |
+| `MaxItems`       | `int`             | `10000`        | Maximum number of items before eviction triggers  |
 | `EvictionPolicy` | `EvictionPolicy`  | `LRU`          | Strategy used when `MaxItems` is exceeded         |
 | `CleanupInterval`| `time.Duration`   | `1 * time.Minute` | How often the background sweeper removes expired keys |
 | `OnEvict`        | `func(K, EvictReason)` | `nil`     | Callback invoked whenever an item is evicted      |
