@@ -44,8 +44,8 @@ func New(opts ...Option) *Cache {
 		c.shards[i] = newShard(cfg.MaxShardCapacity)
 	}
 
-	// 4. Start the background Janitor if the interval is > 0
-	if cfg.JanitorInterval > 0 {
+	// 5. Start the background Janitor if the interval is > 0 and expiration is enabled
+	if cfg.JanitorInterval > 0 && cfg.DefaultTTL > 0 {
 		go c.janitor()
 	}
 
