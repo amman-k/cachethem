@@ -216,7 +216,7 @@ Not currently. All data is lost on process restart. This is intentional — Cach
 No. Keys must satisfy Go's `comparable` constraint, same as native Go maps.
 
 **What happens if I don't set `MaxItems`?**
-The cache grows unbounded except for TTL-based expiration. Set `MaxItems` in any long-running service to guard against unexpected growth.
+The cache has a default of 10000 items per shard
 
 **Is `Cache[K, V]` safe to share across goroutines?**
 Yes, all exported methods are safe for concurrent use.
