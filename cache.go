@@ -28,7 +28,12 @@ func New(opts ...Option) *Cache {
 		opt(cfg)
 	}
 
-	// 3. Initialize the shards
+	// 3. Validate config
+	if cfg.NumShards == 0 {
+		cfg.NumShards = 1
+	}
+
+	// 4. Initialize the shards
 	c := &Cache{
 		shards:  make([]*shard, cfg.NumShards),
 		config:  cfg,
