@@ -24,7 +24,6 @@ If you outgrow it (multi-instance cache coherence, persistence, huge datasets), 
 - [Quick Start](#quick-start)
 - [Usage](#usage)
   - [Basic Example](#basic-example)
-  - [Advanced Examples](#advanced-examples)
   - [Common Use Cases](#common-use-cases)
   - [Configuration Options](#configuration-options)
 - [Architecture](#architecture)
@@ -143,53 +142,6 @@ if !found {
 }
 
 c.Delete("requests:count")
-```
-
-### Advanced Examples
-
-**Custom per-key TTL:**
-
-```go
-c.SetWithTTL("session:abc123", sessionData, 30*time.Second)
-```
-
-**LRU eviction with a size cap:**
-
-```go
-c := cachethem.New[string, []byte](cachethem.Config{
-	MaxItems:       10_000,
-	EvictionPolicy: cachethem.LRU,
-})
-```
-
-**Caching expensive computations with `GetOrCompute`:**
-
-```go
-result, err := c.GetOrCompute("report:2026-Q3", func() (Report, error) {
-	return generateExpensiveReport()
-})
-if err != nil {
-	// computation failed; nothing was cached
-}
-```
-
-**Context-aware access (useful in request-scoped code paths):**
-
-```go
-val, ok := c.GetContext(ctx, "key")
-if ctx.Err() != nil {
-	return ctx.Err()
-}
-```
-
-**Metrics hook for observability:**
-
-```go
-c := cachethem.New[string, string](cachethem.Config{
-	OnEvict: func(key string, reason cachethem.EvictReason) {
-		metrics.Incr("cache.evictions", "reason", reason.String())
-	},
-})
 ```
 
 ### Common Use Cases
