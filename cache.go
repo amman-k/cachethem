@@ -1,14 +1,16 @@
 package cachethem
 
 import (
+	"sync"
 	"time"
 )
 
 // Cache is a high-performance, sharded, thread-safe LRU cache.
 type Cache struct {
-	shards  []*shard
-	config  *config
-	closeCh chan struct{} 
+	shards    []*shard
+	config    *config
+	closeCh   chan struct{}
+	closeOnce sync.Once
 }
 
 // New initializes a new Cache with the given options.
@@ -78,8 +80,9 @@ func (c *Cache) Delete(key string) {
 }
 
 // Close gracefully stops the background janitor goroutine.
+// It is safe to call Close multiple times.
 func (c *Cache) Close() {
-	close(c.closeCh)
+	c.closeOnce.Do(func() { close(c.closeCh) })
 }
 
 
