@@ -160,7 +160,6 @@ c.Delete("requests:count")
 | `MaxItems`       | `int`             | `10000`        | Maximum number of items before eviction triggers  |
 | `EvictionPolicy` | `EvictionPolicy`  | `LRU`          | Strategy used when `MaxItems` is exceeded         |
 | `CleanupInterval`| `time.Duration`   | `1 * time.Minute` | How often the background sweeper removes expired keys |
-| `OnEvict`        | `func(K, EvictReason)` | `nil`     | Callback invoked whenever an item is evicted      |
 | `ShardCount`     | `int`             | `32`           | Number of internal shards for lock contention control |
 
 
