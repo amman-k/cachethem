@@ -108,8 +108,10 @@ func (s *shard) removeElement(ele *list.Element) {
 func (s *shard) deleteExpired(now int64) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	
-	for _, ele := range s.cache {
+
+	var next *list.Element
+	for ele := s.ll.Back(); ele != nil; ele = next {
+		next = ele.Prev()
 		if ele.Value.(*item).isExpired(now) {
 			s.removeElement(ele)
 		}
